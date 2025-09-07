@@ -15,7 +15,7 @@ export class OllamaService extends AiProtocol {
 
       return response.message.content;
     } catch (error) {
-      throw new Error(`Ollama não conseguiu responder, erro: ${error}`);
+      throw new Error(`Erro ao tentar utilizar Ollama: ${error}`);
     }
   }
 }
