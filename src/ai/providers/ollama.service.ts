@@ -6,12 +6,16 @@ import { AiProtocol } from './ai.protocol';
 @Injectable()
 export class OllamaService extends AiProtocol {
   async call({ messages, model }: IAiRequest): Promise<string> {
-    const response = await ollama.chat({
-      model,
-      messages,
-      format: 'json',
-    });
+    try {
+      const response = await ollama.chat({
+        model,
+        messages,
+        format: 'json',
+      });
 
-    return response.message.content;
+      return response.message.content;
+    } catch (error) {
+      throw new Error(`Ollama não conseguiu responder, erro: ${error}`);
+    }
   }
 }
