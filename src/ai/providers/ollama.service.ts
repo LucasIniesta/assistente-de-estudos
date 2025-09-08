@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import ollama from 'ollama';
 import { IAiRequest } from '../interfaces/ai-request.interface';
-import { AiProtocol } from './ai.protocol';
+import { AiProtocol } from '../protocols/ai.protocol';
 
 @Injectable()
 export class OllamaService extends AiProtocol {

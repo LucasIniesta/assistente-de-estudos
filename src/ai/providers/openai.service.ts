@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
 import { IAiRequest } from '../interfaces/ai-request.interface';
-import { AiProtocol } from './ai.protocol';
+import { AiProtocol } from '../protocols/ai.protocol';
 
 @Injectable()
 export class OpenaiService extends AiProtocol {

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AiProviders } from '../enums/ai-providers.enum';
-import { AiProtocol } from '../providers/ai.protocol';
+import { AiProtocol } from '../protocols/ai.protocol';
 import { OllamaService } from '../providers/ollama.service';
 import { OpenaiService } from '../providers/openai.service';
 
