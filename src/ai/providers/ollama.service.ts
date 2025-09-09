@@ -10,7 +10,6 @@ export class OllamaService extends AiProtocol {
       const response = await ollama.chat({
         model,
         messages,
-        format: 'json',
       });
 
       return response.message.content;

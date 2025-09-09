@@ -3,7 +3,6 @@ import { SYSTEM_PROMPTS } from '../constants/system-prompts.constants';
 import { Roles } from '../enums/roles.enum';
 import { PromptProtocol } from '../protocols/prompt.protocol';
 import { TMessages } from '../types/message.type';
-import { TUserContentTutor } from '../types/user-content-prompt.type';
 
 @Injectable()
 export class PromptService extends PromptProtocol {
@@ -21,7 +20,7 @@ export class PromptService extends PromptProtocol {
     ];
   }
 
-  tutor(finalContent: TUserContentTutor): TMessages[] {
+  tutor(finalContent: string): TMessages[] {
     return [
       { role: Roles.SYSTEM, content: SYSTEM_PROMPTS.TUTOR },
       { role: Roles.USER, content: finalContent },

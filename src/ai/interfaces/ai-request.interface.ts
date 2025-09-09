@@ -1,6 +1,7 @@
+import { OllamaModels, OpenaiModels } from '../enums/aiModels.enum';
 import { TMessages } from '../types/message.type';
 
 export interface IAiRequest {
-  model: string;
+  model: OllamaModels | OpenaiModels;
   messages: TMessages[];
 }
