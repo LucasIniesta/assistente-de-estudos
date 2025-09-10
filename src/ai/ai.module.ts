@@ -6,7 +6,13 @@ import { AiChainService } from './services/ai-chain.service';
 import { PromptService } from './services/prompt.service';
 
 @Module({
-  providers: [AiChainService, PromptService, OpenaiService, OllamaService],
-  exports: [AiProviderFactory],
+  providers: [
+    AiChainService,
+    PromptService,
+    OpenaiService,
+    OllamaService,
+    AiProviderFactory,
+  ],
+  exports: [AiChainService],
 })
 export class AiModule {}

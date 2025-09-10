@@ -1,14 +1,5 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
-import { CreateStudyDto } from './dto/create-study.dto';
-import { UpdateStudyDto } from './dto/update-study.dto';
+import { Body, Controller, Post } from '@nestjs/common';
+import { CreateStudyAssistDto } from './dto/create-study-assist.dto';
 import { StudyService } from './study.service';
 
 @Controller('study')
@@ -16,27 +7,7 @@ export class StudyController {
   constructor(private readonly studyService: StudyService) {}
 
   @Post()
-  create(@Body() createStudyDto: CreateStudyDto) {
-    return this.studyService.create(createStudyDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.studyService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.studyService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStudyDto: UpdateStudyDto) {
-    return this.studyService.update(+id, updateStudyDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.studyService.remove(+id);
+  createStudyAssist(@Body() createStudyDto: CreateStudyAssistDto) {
+    return this.studyService.createStudyAssist(createStudyDto);
   }
 }

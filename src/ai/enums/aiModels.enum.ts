@@ -1,7 +1,8 @@
 // Add more if you need it
 export enum OllamaModels {
-  DEEPSEEK_R1_LATEST = 'deepseek-r1:latest ',
   GEMMA3 = 'gemma3:4b',
+  MISTRAL = 'mistral:7b',
+  QWEN3 = 'qwen3:8b',
 }
 
 export enum OpenaiModels {

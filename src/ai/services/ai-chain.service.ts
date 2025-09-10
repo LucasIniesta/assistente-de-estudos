@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AiProviderFactory } from '../factories/ai-provider.factory';
-import { IAiChaiRequest } from '../interfaces/ai-chain-request.interface';
+import { IAiChainRequest } from '../interfaces/ai-chain-request.interface';
 import { AiChainProtocol } from '../protocols/ai-chain.protocol';
 import { PromptService } from './prompt.service';
 
@@ -17,12 +17,13 @@ export class AiChainService extends AiChainProtocol {
     model,
     provider,
     userContent,
-  }: IAiChaiRequest): Promise<string> {
+  }: IAiChainRequest): Promise<string> {
     const aiProvider = this.aiProviderFactory.getProvider(provider);
 
     let response = `Conteúdo: ${userContent}`;
 
     const summaryMessages = this.promptService.summarize(userContent);
+
     const summary = await aiProvider.call({ messages: summaryMessages, model });
 
     response += `Resumo: ${summary}`;

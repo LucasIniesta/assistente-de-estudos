@@ -1,26 +1,26 @@
-import { Injectable } from '@nestjs/common';
-import { CreateStudyDto } from './dto/create-study.dto';
-import { UpdateStudyDto } from './dto/update-study.dto';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { AiProviders } from 'src/ai/enums/ai-providers.enum';
+import { OllamaModels } from 'src/ai/enums/aiModels.enum';
+import { AiChainService } from 'src/ai/services/ai-chain.service';
+import { CreateStudyAssistDto } from '../study/dto/create-study-assist.dto';
 
 @Injectable()
 export class StudyService {
-  create(createStudyDto: CreateStudyDto) {
-    return 'This action adds a new study';
-  }
+  constructor(
+    @Inject()
+    private readonly aiChainService: AiChainService,
+  ) {}
+  async createStudyAssist({ userContent }: CreateStudyAssistDto) {
+    try {
+      const response = await this.aiChainService.studyAssistant({
+        model: OllamaModels.QWEN3,
+        userContent,
+        provider: AiProviders.OLLAMA,
+      });
 
-  findAll() {
-    return `This action returns all study`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} study`;
-  }
-
-  update(id: number, updateStudyDto: UpdateStudyDto) {
-    return `This action updates a #${id} study`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} study`;
+      return response;
+    } catch (error) {
+      throw new HttpException(`Erro: ${error}`, HttpStatus.BAD_REQUEST);
+    }
   }
 }
